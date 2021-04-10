@@ -1,6 +1,6 @@
 <template>
-   <div class="container">
-      <router-link :to="{name: 'Show', params:{id: character.char_id, data: character}}" class="router" v-for="character, index in characters" :key="index">
+   <div class="box-container">
+      <router-link :to="{name: 'Show', params:{id: character.char_id}}" class="router" v-for="character, index in characters" :key="index">
          <div class="box">
         
             <img :src="character.img" alt="">
@@ -12,6 +12,10 @@
             </div>
          </div>
       </router-link>
+      <button class="btn btn-primary" @click="sendSee" v-if="hide == false">Vedi tutti</button>
+      <button class="btn btn-primary" @click="sendHide" v-else>Nascondi</button>
+
+
       
       
    </div>
@@ -22,16 +26,45 @@
 export default {
    name: 'Cards',
    props: ['characters'],
+
+   data(){
+      return {
+         hide: false
+      }
+   },
   
+  methods: {
+     sendSee(){
+        this.$emit('see');
+        const self = this;
+        setTimeout( function(){
+        self.hide = true;
+        }, 300)
+     },
+
+     sendHide(){
+         this.$emit('hide');
+         const self = this;
+         setTimeout( function(){
+         self.hide = false;
+         }, 300)
+     }
+  }
 
 }
 </script>
 
 <style lang="scss" scoped>
-   .container{
+   .box-container{
       display: flex;
       flex-wrap: wrap;
       padding: 50px;
+
+      button{
+         height: 50px;
+         align-self: center;
+         margin-left: 100px;
+      }
 
       .router{
          width: calc(100% / 4 - 40px);
