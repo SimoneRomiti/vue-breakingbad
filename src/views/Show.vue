@@ -9,7 +9,7 @@
           <div class="col-md-6">
             <div class="card-body">
               <h2 class="card-title">{{ character.name }}</h2>
-              <p class="card-text">Nckname: <strong>{{ character.nickname }}</strong></p>
+              <p class="card-text">Nickname: <strong>{{ character.nickname }}</strong></p>
               <p class="card-text">Interpretato da: <strong>{{ character.portrayed }}</strong></p>
               <p class="card-text">Seasons appearances:
                 <strong>
